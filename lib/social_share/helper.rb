@@ -1,7 +1,9 @@
 module SocialShare
   module Helper
-    def social_share(title, url)
-      content = "#{facebook_share(title, url)} #{twitter_share(title, url)} #{google_plus_share(title, url)} #{pinterest_share(title, url)} #{javascript_tag 'SocialShare.openUrl()'}"
+    def social_share(title, url, services = [:facebook, :twitter])
+      content = ""
+      services.each { |service| content += self.send("#{service}_share", title, url) }
+      content += "#{javascript_tag 'SocialShare.openUrl()'}"
       content_tag(:div, content.html_safe, class: 'social-share')
     end
 
