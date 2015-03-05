@@ -8,19 +8,19 @@ module SocialShare
     end
 
     def facebook_share(title, url)
-      link_to(fa_icon('facebook'), "http://www.facebook.com/sharer/sharer.php?u=#{url}&title=#{title}", class: 'facebook-share-button', title: 'Share to Facebook')
+      link_to(tag(:span, class: 'ss-icon-facebook'), "http://www.facebook.com/sharer/sharer.php?u=#{url}&title=#{title}", class: 'facebook-share-button', title: 'Share to Facebook')
     end
 
     def twitter_share(title, url)
-      link_to(fa_icon('twitter'), "http://twitter.com/share?text=#{title}", class: 'twitter-share-button', title: 'Share to Twitter')
+      link_to(tag(:span, class: 'ss-icon-twitter'), "http://twitter.com/share?text=#{title}", class: 'twitter-share-button', title: 'Share to Twitter')
     end
 
     def pinterest_share(title, url)
-      link_to(fa_icon('pinterest'), "http://pinterest.com/pin/create/button/?url=#{url}&description=#{title}", class: 'pinterest-share-button', title: 'Share to Pinterest')
+      link_to(tag(:span, class: 'ss-icon-pinterest'), "http://pinterest.com/pin/create/button/?url=#{url}&description=#{title}", class: 'pinterest-share-button', title: 'Share to Pinterest')
     end
 
     def google_plus_share(title, url)
-      link_to(fa_icon('google-plus'), "http://plus.google.com/share?url=#{url}", class: 'google-plus-share-button', title: 'Share to Google Plus')
+      link_to(tag(:span, class: 'ss-icon-google-plus'), "http://plus.google.com/share?url=#{url}", class: 'google-plus-share-button', title: 'Share to Google Plus')
     end
   end
 end
