@@ -1,6 +1,6 @@
 # SocialShare
 
-TODO: Write a gem description
+Easy helper methods for adding custom social share buttons (Facebook, Twitter, and Google+) to your Rails app.
 
 ## Installation
 
@@ -20,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The `social_share` method takes a title, a url, and an optional services argument.
+
+```ruby
+<%= social_share(@video.title, video_path(@video), [:facebook, :twitter, :google_plus]) %>
+```
 
 ## Contributing
 
