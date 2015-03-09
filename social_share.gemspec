@@ -9,6 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['ldewald']
   spec.email         = ['laurardewald@gmail.com']
   spec.summary       = %q{Easy helper methods for adding custom social share buttons to your Rails app.}
+  spec.description   = %q{Easy helper methods for adding custom social share buttons (Facebook, Twitter, Google+) to your Rails app.}
   spec.homepage      = 'https://github.com/ldewald/social_share'
   spec.license       = 'MIT'
 
