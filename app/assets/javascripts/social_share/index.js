@@ -1,6 +1,6 @@
 window.SocialShare = {
   openUrl: function() {
-    $('.social-share a').click(function(event) {
+    $('.social-share a.ss-button').click(function(event) {
       event.preventDefault()
       windowName = $(event.target).attr('title')
       var width  = 575,
@@ -17,5 +17,16 @@ window.SocialShare = {
 
        window.open(url, windowName, opts);
     })
+  },
+
+  openMore: function() {
+    $('.ss-more-button').mouseover(function(event) {
+      event.preventDefault()
+      $('.ss-more-buttons').show()
+    })
+
+    $('.social-share-more').mouseleave(function () {
+        $('.ss-more-buttons').hide();
+    });
   }
 };
