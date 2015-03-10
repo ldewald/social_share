@@ -4,10 +4,10 @@ module SocialShare
 
     def social_share(title, url, options = {})
       services = options[:services] || [:facebook, :twitter]
-      content = generate_buttons(services, title, url)
+      content = generate_buttons(services, title, url, image: options[:image])
       more_services = options[:more_services] || SERVICES - services
       if more_services.present?
-        content += generate_more_buttons(more_services, title, url)
+        content += generate_more_buttons(more_services, title, url, image: options[:image])
       end
       content_tag(:div, content.html_safe, class: 'social-share')
     end
@@ -20,8 +20,8 @@ module SocialShare
       link_to(tag(:span, class: 'ss-icon-google-plus'), "http://plus.google.com/share?url=#{url}", class: 'ss-button ss-google-plus-share-button', title: 'Share to Google Plus')
     end
 
-    def pinterest_share(title, url)
-      link_to(tag(:span, class: 'ss-icon-pinterest'), "http://pinterest.com/pin/create/button/?url=#{url}&description=#{title}", class: 'ss-button ss-pinterest-share-button', title: 'Share to Pinterest')
+    def pinterest_share(title, url, image)
+      link_to(tag(:span, class: 'ss-icon-pinterest'), "http://pinterest.com/pin/create/button/?url=#{url}&description=#{title}&media=#{image}", class: 'ss-button ss-pinterest-share-button', title: 'Share to Pinterest')
     end
 
     def reddit_share(title, url)
@@ -42,15 +42,22 @@ module SocialShare
 
     private
 
-    def generate_buttons(services, title, url)
+    def generate_buttons(services, title, url, options={})
       content = ''
-      services.each { |service| content += self.send("#{service}_share", title, url) }
+      services.each do |service|
+        if service == :pinterest
+          next unless options[:image]
+          content += self.pinterest_share(title, url, options[:image])
+        else
+          content += self.send("#{service}_share", title, url)
+        end
+      end
       content
     end
 
-    def generate_more_buttons(services, title, url)
+    def generate_more_buttons(services, title, url, options={})
       more_content = link_to(tag(:span, class: 'ss-icon-plus'), "#", class: 'ss-more-button', title: 'More sharing options')
-      more_buttons = content_tag(:div, generate_buttons(services, title, url).html_safe, class: 'ss-more-buttons')
+      more_buttons = content_tag(:div, generate_buttons(services, title, url, options).html_safe, class: 'ss-more-buttons')
       more_content += "#{more_buttons} #{javascript_tag 'SocialShare.openMore()'}".html_safe
       "#{content_tag(:div, more_content.html_safe, class: 'social-share-more')} #{javascript_tag 'SocialShare.openUrl()'}"
     end
