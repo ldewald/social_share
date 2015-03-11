@@ -1,6 +1,6 @@
 module SocialShare
   module Helper
-    SERVICES = [:facebook, :twitter, :google_plus, :pinterest, :reddit, :tumblr, :stumbleupon]
+    SERVICES = [:facebook, :twitter, :google_plus, :pinterest, :reddit, :tumblr, :stumbleupon, :email]
 
     def social_share(title, url, options = {})
       services = options[:services] || [:facebook, :twitter]
@@ -10,6 +10,10 @@ module SocialShare
         content += generate_more_buttons(more_services, title, url, image: options[:image])
       end
       content_tag(:div, content.html_safe, class: 'social-share')
+    end
+
+    def email_share(title, url)
+      link_to(tag(:span, class: 'ss-icon-envelope-o'), "mailto:?to=&body=#{url},&subject=#{title}", class: 'ss-button ss-email-share-button', title: 'Share to Email')
     end
 
     def facebook_share(title, url)
