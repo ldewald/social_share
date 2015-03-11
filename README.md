@@ -32,10 +32,19 @@ Or install it yourself as:
 *= require social_share
 ```
 
-The `social_share` method takes a title, a url, and an optional services argument (defaults to Facebook and Twitter).
+The current social service options are `[:facebook, :twitter, :google_plus, :pinterest, :reddit, :tumblr, :stumbleupon]`
+
+The `social_share` method takes a title, a url, and an optional services argument (defaults to Facebook and Twitter) as well as an optional more_services option (defaults to everything except Facebook and Twitter).
 
 ```ruby
-<%= social_share(@video.title, video_path(@video), [:facebook, :twitter, :google_plus]) %>
+<%= social_share(@video.title, video_path(@video), services: [:facebook, :twitter, :google_plus]) %>
+```
+
+**Gotchas**
+
+The Pinterest button will only be generated if you include the optional image argument:
+```ruby
+<%= social_share(@video.title, video_path(@video), image: 'https://placekitten.com/g/500/300') %>
 ```
 
 ## Contributing
