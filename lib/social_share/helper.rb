@@ -29,7 +29,7 @@ module SocialShare
     end
 
     def reddit_share(title, url)
-      link_to(tag(:span, class: 'ss-icon-reddit'), "http://www.reddit.com/submit?url=#{title}&title=#{url}", class: 'ss-button ss-reddit-share-button', title: 'Share to reddit')
+      link_to(tag(:span, class: 'ss-icon-reddit'), "http://www.reddit.com/submit?url=#{url}&title=#{title}", class: 'ss-button ss-reddit-share-button', title: 'Share to reddit')
     end
 
     def stumbleupon_share(title, url)
