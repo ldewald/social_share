@@ -63,7 +63,7 @@ module SocialShare
       more_content = link_to(tag(:span, class: 'ss-icon-plus'), "#", class: 'ss-more-button', title: 'More sharing options')
       more_buttons = content_tag(:div, generate_buttons(services, title, url, options).html_safe, class: 'ss-more-buttons')
       more_content += "#{more_buttons} #{javascript_tag 'SocialShare.openMore()'}".html_safe
-      "#{content_tag(:div, more_content.html_safe, class: 'social-share-more')} #{javascript_tag 'SocialShare.openUrl()'}"
+      content_tag(:div, more_content.html_safe, class: 'social-share-more')
     end
   end
 end
